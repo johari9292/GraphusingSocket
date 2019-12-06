@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import socketIOClient from "socket.io-client";
+import socketIOClient from "socket.io-client";
 import axios from 'axios'
 import { Line, Bar } from 'react-chartjs-2';
 import DatePicker from "react-datepicker";
@@ -21,26 +21,26 @@ class Daywise extends Component {
   }
 
   componentDidMount() {
-//     const { endpoint } = this.state;
+    const { endpoint } = this.state;
 
-//     const socket = socketIOClient(endpoint);
+    const socket = socketIOClient(endpoint);
 
-//     socket.on("FromAPI", data => this.setState({
-//       dataarr: this.state.dataarr.concat(data)
+    socket.on("FromAPI", data => this.setState({
+      dataarr: this.state.dataarr.concat(data)
 
-//     })
+    })
 
-//     );
-//     socket.on("mydata", data => this.setState({
-//       dataarr: data
-//     }))
+    );
+    socket.on("mydata", data => this.setState({
+      dataarr: data
+    }))
    
   
   }
 
   handleChange = dates => {
     this.state.dataarr =[]
-    axios.get(`http://graphtask.herokuapp.com/getdata/`+dates)
+    axios.get(`http://localhost:4001/get/`+dates)
     .then(res => {
       const tasks = res.data;
       console.log(tasks)
