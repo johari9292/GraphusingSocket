@@ -1,0 +1,45 @@
+{
+  "name": "socket-io-client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@9softstudio/react-monthpicker": "^1.0.9",
+    "axios": "^0.19.0",
+    "bootstrap": "^4.4.1",
+    "chart.js": "^2.9.2",
+    "chartjs": "^0.3.24",
+    "chartjs-plugin-streaming": "^1.8.0",
+    "moment": "^2.24.0",
+    "preact-monthpicker": "^1.1.5",
+    "react": "^16.11.0",
+    "react-chartjs-2": "^2.8.0",
+    "react-datepicker": "^2.10.1",
+    "react-dom": "^16.11.0",
+    "react-moment": "^0.9.6",
+    "react-rt-chart": "^2.0.0",
+    "react-scripts": "3.2.0",
+    "react-year-picker": "^0.3.7",
+    "reactstrap": "^8.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
