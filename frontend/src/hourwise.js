@@ -21,19 +21,19 @@ class Daywise extends Component {
   }
 
   componentDidMount() {
-    const { endpoint } = this.state;
+//     const { endpoint } = this.state;
 
-    const socket = socketIOClient(endpoint);
+//     const socket = socketIOClient(endpoint);
 
-    socket.on("FromAPI", data => this.setState({
-      dataarr: this.state.dataarr.concat(data)
+//     socket.on("FromAPI", data => this.setState({
+//       dataarr: this.state.dataarr.concat(data)
 
-    })
+//     })
 
-    );
-    socket.on("mydata", data => this.setState({
-      dataarr: data
-    }))
+//     );
+//     socket.on("mydata", data => this.setState({
+//       dataarr: data
+//     }))
    
   
   }
