@@ -1,11 +1,12 @@
+const dotenv = require("dotenv").config()
 const express = require("express");
 const http = require("http");
 // const socketIo = require("socket.io");
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 8080;
 const BodyParser = require("body-parser");
 const index = require("./routes/index");
 const app = express();
-const dotenv = require("dotenv").config()
+
 app.use(index);
 const server = http.createServer(app);
 // const io = socketIo(server);
@@ -92,10 +93,6 @@ app.options('*', cors());
 // })
 app.use(express.static(path.join(__dirname, "frontend", "build")))
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
-});
-
 app
   .route('/getdata/:date')
   .get(Controller.gettodo)
@@ -116,5 +113,10 @@ app
 app
   .route('/add')
   .post(Controller.addtodo)
+  
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+});
+
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

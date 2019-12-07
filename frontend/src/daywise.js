@@ -29,6 +29,7 @@ class Daywise extends Component {
       const tasks = res.data;
       this.setState({ dataarr:tasks });
     })
+    console.log("dataarr",this.state.dataarr)
     this.setState({
       month:month -1,
       year:year
