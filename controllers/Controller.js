@@ -94,7 +94,7 @@ exports.getbymonth = (req, res) => {
 
 exports.getbyyear = (req, res) => {
 
-    let years =parseInt( req.params.year)
+    let years =req.params.year
     
     Todo.aggregate([
        
