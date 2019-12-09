@@ -24,8 +24,9 @@ class Daywise extends Component {
 
   handleChange = (e)=> {
     this.state.dataarr =[]
-     let year = new Date().setFullYear(e.target.value)
-    axios.get('https:graphtask.herokuapp.com/byyear/'+ e.target.value)
+      let year = new Date(new Date().setFullYear(e.target.value)).getFullYear()
+      console.log("yearrrrrr", year)
+    axios.get('https:graphtask.herokuapp.com/byyear/'+ year)
     .then(res => {
       const tasks = res.data;
       this.setState({ dataarr:tasks });
