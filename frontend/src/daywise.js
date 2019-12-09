@@ -24,12 +24,11 @@ class Daywise extends Component {
   }
   handleSelect = (month, year) => {
     this.state.dataarr = []
-    axios.get(`https://graphtask.herokuapp.com/getdata/` + month +'/' + year)
+    axios.get(`http://localhost:4001/get/` + month +'/' + year)
     .then(res => {
       const tasks = res.data;
       this.setState({ dataarr:tasks });
     })
-    console.log("dataarr",this.state.dataarr)
     this.setState({
       month:month -1,
       year:year
