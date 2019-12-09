@@ -1,9 +1,9 @@
 const Todo = require("../models/modal")
 assert = require('assert')
 exports.gettodo = (req, res) => {
-
+ 
     let dates = req.params.date
-
+   
     let newdate = parseInt (new Date(dates).getDate(),10);
     let newmonth =parseInt( new Date(dates).getMonth()+1,10);
     let newyear = parseInt( new Date(dates).getFullYear(),10);
@@ -94,17 +94,14 @@ exports.getbymonth = (req, res) => {
 
 exports.getbyyear = (req, res) => {
 
-    let years =req.params.year
+    let years =parseInt(req.params.year)
     
     Todo.aggregate([
        
         {
             "$redact": {
-                "$cond": [
-                    
-                      
-                        { "$eq": [ { "$year": "$date" }, years] },
-                    
+                "$cond": [  
+                        { "$eq": [ { "$year": "$date" }, years] }, 
                     "$$KEEP",
                     "$$PRUNE"
                 ]
