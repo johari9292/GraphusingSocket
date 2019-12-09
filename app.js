@@ -93,7 +93,7 @@ app.options('*', cors());
 // })
 app.use(express.static(path.join(__dirname, "frontend", "build")))
 app
-  .route('/getdata/1/2/:year')
+  .route('/getdata/:x/:y/:year')
   .get(Controller.getbyyear)
 app
   .route('/getdata/:date')
