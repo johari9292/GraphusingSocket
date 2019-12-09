@@ -101,7 +101,7 @@ app
   .get(Controller.getbymonth)
 
 app
-  .route('/getbyyear/:year')
+  .route('/byyear/:year')
   .get(Controller.getbyyear)
 
 
