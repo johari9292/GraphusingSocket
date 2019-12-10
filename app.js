@@ -16,7 +16,7 @@ const ObjectId = require("mongodb").ObjectID;
 const MongoClient = require('mongodb').MongoClient;
 const DATABASE_NAME = "test";
 const cors = require('cors');
-const uri = "mongodb+srv://joharibalti1996:is119821885@cluster0-jjj5l.mongodb.net/test?retryWrites=true&w=majority";
+const MONGO_URI = "mongodb+srv://joharibalti1996:is119821885@cluster0-jjj5l.mongodb.net/test?retryWrites=true&w=majority";
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded());
 
@@ -29,7 +29,7 @@ app.options('*', cors());
 
 // ... other app.use middleware 
 app.use(express.static(path.join(__dirname, "frontend", "build")))
-MongoClient.connect(uri, { useNewUrlParser: true }, (error, client) => {
+MongoClient.connect(MONGO_URI, { useNewUrlParser: true }, (error, client) => {
 
   if (error) {
     throw error;
