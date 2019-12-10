@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv").config()
-const http = require("https");
+const https = require("https");
 const socketIo = require("socket.io");
 const port = process.env.PORT || 80;
 const BodyParser = require("body-parser");
