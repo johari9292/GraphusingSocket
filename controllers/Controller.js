@@ -168,7 +168,7 @@ exports.addtodo = (req, res) => {
 exports.addtask = (req, res)=> {
     let tasks = req.params.task;
      
-     PHMS.insertMany({
+     Todo.insertMany({
         
         no_task: tasks, 
         
