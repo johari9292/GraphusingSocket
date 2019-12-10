@@ -16,7 +16,7 @@ class Daywise extends Component {
       response: [],
       available: true,
       startDate: new Date(),
-      endpoint: "http://127.0.0.1:4001",
+      endpoint: "https://graphtask.herokuapp.com",
     }
   }
 
@@ -40,7 +40,7 @@ class Daywise extends Component {
 
   handleChange = dates => {
     this.state.dataarr =[]
-    axios.get(`http://localhost:4001/get/`+dates)
+    axios.get(`https://graphtask.herokuapp.com/getdata/`+dates)
     .then(res => {
       const tasks = res.data;
       console.log(tasks)
