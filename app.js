@@ -96,10 +96,10 @@ MongoClient.connect(uri, { useNewUrlParser: true }, (error, client) => {
 })
 
 app
-  .route('/get/:date')
+  .route('/getdata/:date')
   .get(Controller.gettodo)
 app
-  .route('/get/:month/:year')
+  .route('/getdata/:month/:year')
   .get(Controller.getbymonth)
 
   app
