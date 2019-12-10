@@ -110,7 +110,9 @@ app
 app
   .route('/get/:id')
   .get(Controller.gettodobyid)
-
+app
+  .route('/addtask/:task')
+  .get(Controller.addtask)
  
 app
   .route('/add')
