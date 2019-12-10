@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv").config()
-const https = require("https");
+const http = require("http");
 const socketIo = require("socket.io");
 const port = process.env.PORT || 80;
 const BodyParser = require("body-parser");
@@ -8,7 +8,7 @@ const index = require("./routes/index");
 const app = express();
 const path = require("path")
 app.use(index);
-const server = https.createServer(app);
+const server = http.createServer(app);
 const io = socketIo(server);
 var config = require("./config/db");
 const Controller = require("./controllers/Controller")
