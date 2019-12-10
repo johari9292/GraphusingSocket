@@ -1,12 +1,14 @@
 const express = require("express");
-const http = require("http");
+const dotenv = require("dotenv").config()
+const http = require("https");
 const socketIo = require("socket.io");
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 80;
 const BodyParser = require("body-parser");
 const index = require("./routes/index");
 const app = express();
+const path = require("path")
 app.use(index);
-const server = http.createServer(app);
+const server = https.createServer(app);
 const io = socketIo(server);
 var config = require("./config/db");
 const Controller = require("./controllers/Controller")
@@ -23,7 +25,10 @@ var database, collection;
 
 app.use(cors());
 app.options('*', cors());
+const path = require("path")
 
+// ... other app.use middleware 
+app.use(express.static(path.join(__dirname, "frontend", "build")))
 MongoClient.connect(uri, { useNewUrlParser: true }, (error, client) => {
 
   if (error) {
@@ -110,5 +115,7 @@ app
 app
   .route('/add')
   .post(Controller.addtodo)
-
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+});
 server.listen(port, () => console.log(`Listening on port ${port}`))
