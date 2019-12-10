@@ -165,6 +165,25 @@ exports.addtodo = (req, res) => {
         });
 }
 
+exports.addphmsparam = (req, res)=> {
+    let tasks = req.params.task;
+     
+     PHMS.insertMany({
+        
+        no_task: tasks, 
+        
+       
+     }).then(phms => {
+             res.status(200).json({'Task': 'Taskadded successfully'+ "task:" +tasks });
+            
+         })
+         .catch(err => {
+             res.status(400).send('adding new task failed');
+         });
+ }
+
+
+
 exports.updatetodo = (req, res) => {
     Todo.findById(req.params.id, function (err, todo) {
         if (!todo)
