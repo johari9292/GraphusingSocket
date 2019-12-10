@@ -25,7 +25,7 @@ var database, collection;
 
 app.use(cors());
 app.options('*', cors());
-const path = require("path")
+
 
 // ... other app.use middleware 
 app.use(express.static(path.join(__dirname, "frontend", "build")))
