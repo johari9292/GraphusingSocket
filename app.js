@@ -1,41 +1,49 @@
 const express = require("express");
+var config = require("./config/db");
 const dotenv = require("dotenv").config();
 const http = require("http");
-const socketIo = require("socket.io");
-const port = process.env.PORT || 80;
-const BodyParser = require("body-parser");
-const index = require("./routes/index");
-const app = express();
-const path = require("path");
-app.use(index);
-const server = http.createServer(app);
-const io = socketIo(server);
-var config = require("./config/db");
-const Controller = require("./controllers/Controller");
-const ObjectId = require("mongodb").ObjectID;
-const MongoClient = require("mongodb").MongoClient;
-const DATABASE_NAME = "test";
+
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const compress = require("compression");
 const cors = require("cors");
-const MONGO_URI =
-  "mongodb+srv://joharibalti1996:is119821885@cluster0-jjj5l.mongodb.net/test?retryWrites=true&w=majority";
-app.use(BodyParser.json());
-app.use(BodyParser.urlencoded());
+const userRoutes = require("./routes/user.routes");
+const authRoutes = require("./routes/auth.routes");
 
-var database, collection;
+const port = process.env.PORT || 80;
+const app = express();
+const server = http.createServer(app);
 
+const cors = require("cors");
+
+const app = express();
+
+//comment out before building for production
+
+// parse body params and attache them to req.body
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(compress());
+// secure apps by setting various HTTP headers
+
+// enable CORS - Cross Origin Resource Sharing
 app.use(cors());
-app.options("*", cors());
 
-// ... other app.use middleware
+// mount routes
+app.use("/", userRoutes);
+app.use("/", authRoutes);
 
-app.route("/getdata/:date").get(Controller.gettodo);
-app.route("/getdata/:month/:year").get(Controller.getbymonth);
+// Catch unauthorised errors
+app.use((err, req, res, next) => {
+  if (err.name === "UnauthorizedError") {
+    res.status(401).json({ error: err.name + ": " + err.message });
+  } else if (err) {
+    res.status(400).json({ error: err.name + ": " + err.message });
+    console.log(err);
+  }
+});
 
-app.route("/getbyyear/:year").get(Controller.getbyyear);
-
-app.route("/get/:id").get(Controller.gettodobyid);
-app.route("/addtask/:task").get(Controller.addtask);
-
-app.route("/add").post(Controller.addtodo);
+export default app;
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
