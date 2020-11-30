@@ -1,121 +1,41 @@
 const express = require("express");
-const dotenv = require("dotenv").config()
+const dotenv = require("dotenv").config();
 const http = require("http");
 const socketIo = require("socket.io");
 const port = process.env.PORT || 80;
 const BodyParser = require("body-parser");
 const index = require("./routes/index");
 const app = express();
-const path = require("path")
+const path = require("path");
 app.use(index);
 const server = http.createServer(app);
 const io = socketIo(server);
 var config = require("./config/db");
-const Controller = require("./controllers/Controller")
+const Controller = require("./controllers/Controller");
 const ObjectId = require("mongodb").ObjectID;
-const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require("mongodb").MongoClient;
 const DATABASE_NAME = "test";
-const cors = require('cors');
-const MONGO_URI = "mongodb+srv://joharibalti1996:is119821885@cluster0-jjj5l.mongodb.net/test?retryWrites=true&w=majority";
+const cors = require("cors");
+const MONGO_URI =
+  "mongodb+srv://joharibalti1996:is119821885@cluster0-jjj5l.mongodb.net/test?retryWrites=true&w=majority";
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded());
-
 
 var database, collection;
 
 app.use(cors());
-app.options('*', cors());
+app.options("*", cors());
 
+// ... other app.use middleware
 
-// ... other app.use middleware 
+app.route("/getdata/:date").get(Controller.gettodo);
+app.route("/getdata/:month/:year").get(Controller.getbymonth);
 
-MongoClient.connect(MONGO_URI, { useNewUrlParser: true }, (error, client) => {
+app.route("/getbyyear/:year").get(Controller.getbyyear);
 
-  if (error) {
-    throw error;
-  }
-  database = client.db(DATABASE_NAME);
-  collection = database.collection("todos");
-  console.log("Connected to `" + DATABASE_NAME + "`!");
-//  collection.aggregate
+app.route("/get/:id").get(Controller.gettodobyid);
+app.route("/addtask/:task").get(Controller.addtask);
 
-  io.on("connection", socket => {
-    console.log("New client connected");
-    let dates = new Date(2019,10,22).getDate();
-    let newdate = new Date().getDate(); 
-    let newmonth = new Date().getMonth() ;
-    let newyear = new Date().getFullYear();
-    var start = new Date(newyear, newmonth, newdate, 5, 58, 0, 30);
-    var end = new Date(newyear, newmonth, newdate, 22, 0, 0, 1);
+app.route("/add").post(Controller.addtodo);
 
-    console.log(newdate, newmonth, newyear )
-    if (!socket.sentMydata) {
-     collection.find({ date: { $gte: start, $lt: end } }).toArray(function (err, result) {
-        if (err) throw err;
-       
-        let myarr = []
-        let istrue = true
-        result.map(({date,no_task}) =>{
-          if (istrue === true) {
-            myarr.push({ "x": (new Date(date).setHours(6, 0, 0)), "y": 0 })
-            istrue = false
-        }
-          myarr.push({"x":date,"y":no_task})
-         
-         socket.emit("mydata", (myarr));
-
-        }
-          )
-       
-
-      })
-      socket.sentMydata = true;
-    }
-    const changeStream = collection.watch()
-    changeStream.on('change', function (change) {
-      console.log("collection changed");
-      collection.find({}).sort({ _id: -1 }).limit(1).toArray(function (err, result) {
-        if (err) throw err;
-       
-       let x = []
-        result.map(({date,no_task}) =>{
-           x.push({"x":date,"y":no_task})
-
-         }
-           )
-        
-        socket.emit("FromAPI", (x));
-
-      })
-    })
-
-    socket.on("disconnect", () => {
-      console.log("Client disconnected");
-    });
-  });
-})
-
-app
-  .route('/getdata/:date')
-  .get(Controller.gettodo)
-app
-  .route('/getdata/:month/:year')
-  .get(Controller.getbymonth)
-
-  app
-  .route('/getbyyear/:year')
-  .get(Controller.getbyyear)
-
-
-app
-  .route('/get/:id')
-  .get(Controller.gettodobyid)
-app
-  .route('/addtask/:task')
-  .get(Controller.addtask)
- 
-app
-  .route('/add')
-  .post(Controller.addtodo)
-
-server.listen(port, () => console.log(`Listening on port ${port}`))
+server.listen(port, () => console.log(`Listening on port ${port}`));
