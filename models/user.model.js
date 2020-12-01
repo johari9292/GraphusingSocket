@@ -64,5 +64,4 @@ UserSchema.methods = {
     return Math.round(new Date().valueOf() * Math.random()) + "";
   },
 };
-
-export default mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema);

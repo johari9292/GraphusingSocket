@@ -2,7 +2,7 @@ const User = require("../models/user.model");
 const extend = require("lodash/extend");
 const errorHandler = require("./../helpers/dbErrorHandler");
 
-const create = async (req, res) => {
+exports.create = async (req, res) => {
   const user = new User(req.body);
   try {
     await user.save();
@@ -19,7 +19,7 @@ const create = async (req, res) => {
 /**
  * Load user and append to req.
  */
-const userByID = async (req, res, next, id) => {
+exports.userByID = async (req, res, next, id) => {
   try {
     let user = await User.findById(id);
     if (!user)
@@ -35,13 +35,13 @@ const userByID = async (req, res, next, id) => {
   }
 };
 
-const read = (req, res) => {
+exports.read = (req, res) => {
   req.profile.hashed_password = undefined;
   req.profile.salt = undefined;
   return res.json(req.profile);
 };
 
-const list = async (req, res) => {
+exports.list = async (req, res) => {
   try {
     let users = await User.find().select("name email updated created");
     res.json(users);
@@ -52,7 +52,7 @@ const list = async (req, res) => {
   }
 };
 
-const update = async (req, res) => {
+exports.update = async (req, res) => {
   try {
     let user = req.profile;
     user = extend(user, req.body);
@@ -68,7 +68,7 @@ const update = async (req, res) => {
   }
 };
 
-const remove = async (req, res) => {
+exports.remove = async (req, res) => {
   try {
     let user = req.profile;
     let deletedUser = await user.remove();
@@ -80,13 +80,4 @@ const remove = async (req, res) => {
       error: errorHandler.getErrorMessage(err),
     });
   }
-};
-
-export default {
-  create,
-  userByID,
-  read,
-  list,
-  remove,
-  update,
 };
