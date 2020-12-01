@@ -3,6 +3,7 @@ var express = require("express");
 var config1 = require("./config/db");
 var config = "./config/config";
 var http = require("http");
+
 // var dotenv = require("dotenv").config();
 var bodyParser = require("body-parser");
 var cookieParser = require("cookie-parser");
@@ -43,9 +44,9 @@ app.use((err, req, res, next) => {
   }
 });
 
-server.listen(config.port, (err) => {
+server.listen(process.env.PORT || 3000, (err) => {
   if (err) {
     console.log(err);
   }
-  console.info("Server started on port %s.", config.port);
+  console.info("Server started on port %s.", process.env.PORT || 3000);
 });
