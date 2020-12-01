@@ -17,7 +17,6 @@ const server = http.createServer(app);
 //comment out before building for production
 app.use(cors());
 // parse body params and attache them to req.body
-app.options("*", cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -39,5 +38,7 @@ app.use((err, req, res, next) => {
     console.log(err);
   }
 });
+
+export default app;
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
