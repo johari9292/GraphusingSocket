@@ -14,13 +14,10 @@ const port = process.env.PORT || 80;
 const app = express();
 const server = http.createServer(app);
 
-const cors = require("cors");
-
-const app = express();
-
 //comment out before building for production
-
+app.use(cors());
 // parse body params and attache them to req.body
+app.options("*", cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -28,7 +25,6 @@ app.use(compress());
 // secure apps by setting various HTTP headers
 
 // enable CORS - Cross Origin Resource Sharing
-app.use(cors());
 
 // mount routes
 app.use("/", userRoutes);
@@ -43,7 +39,5 @@ app.use((err, req, res, next) => {
     console.log(err);
   }
 });
-
-export default app;
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
