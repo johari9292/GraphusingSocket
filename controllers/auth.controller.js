@@ -23,7 +23,7 @@ exports.signin = async (req, res) => {
       {
         _id: user._id,
       },
-      config.jwtSecret
+      " config.jwtSecret"
     );
 
     res.cookie("t", token, {
@@ -53,7 +53,7 @@ exports.signout = (req, res) => {
 };
 
 exports.requireSignin = expressJwt({
-  secret: config.jwtSecret,
+  secret: "config.jwtSecret",
   userProperty: "auth",
 });
 

@@ -1,18 +1,21 @@
-const express = require("express");
-var config = require("./config/db");
-const dotenv = require("dotenv").config();
-const http = require("http");
+require("dotenv").config();
+var express = require("express");
+var config1 = require("./config/db");
+var config = "./config/config";
+var http = require("http");
+// var dotenv = require("dotenv").config();
+var bodyParser = require("body-parser");
+var cookieParser = require("cookie-parser");
+var compress = require("compression");
 
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const compress = require("compression");
-const cors = require("cors");
-const userRoutes = require("./routes/user.routes");
-const authRoutes = require("./routes/auth.routes");
+var cors = require("cors");
+var userRoutes = require("./routes/user.routes");
+var authRoutes = require("./routes/auth.routes");
 
-const port = process.env.PORT || 80;
-const app = express();
-const server = http.createServer(app);
+var port = process.env.PORT || 80;
+
+var app = express();
+var server = http.createServer(app);
 
 //comment out before building for production
 app.use(cors());
@@ -40,4 +43,9 @@ app.use((err, req, res, next) => {
   }
 });
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
+server.listen(config.port, (err) => {
+  if (err) {
+    console.log(err);
+  }
+  console.info("Server started on port %s.", config.port);
+});
