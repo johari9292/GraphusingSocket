@@ -6,10 +6,9 @@
   "scripts": {
     "start": "node app.js"
   },
-  
-"engines": {
+  "engines": {
     "node": "12.11.0"
-}, 
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

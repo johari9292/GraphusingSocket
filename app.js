@@ -12,6 +12,7 @@ var compress = require("compression");
 var cors = require("cors");
 var userRoutes = require("./routes/user.routes");
 var authRoutes = require("./routes/auth.routes");
+var buyPlantRoutes = require("./routes/buyplant.routes");
 
 var port = process.env.PORT || 80;
 
@@ -33,6 +34,8 @@ app.use(compress());
 // mount routes
 app.use("/", userRoutes);
 app.use("/", authRoutes);
+
+app.use("/", buyPlantRoutes);
 
 // Catch unauthorised errors
 app.use((err, req, res, next) => {
