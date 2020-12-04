@@ -1,14 +1,16 @@
 const express = require("express");
-const buyPlantController = require("../controllers/balance.controller");
+const buyPlantController = require("../controllers/buyplant.controller");
 
 const router = express.Router();
 
-router.route("/getbalance").get(buyPlantController.gettodo);
+router.route("/users").get(UserController.Fetchdata);
 
-router.route("/getbalance/:id").get(buyPlantController.gettodobyid);
+router.route("/getbuyplant").get(buyPlantController.gettodo);
 
-router.route("/addbalance").post(buyPlantController.addtodo);
+router.route("/getbuyplant/:id").get(buyPlantController.gettodobyid);
 
-router.route("/deletebalance/:id").delete(buyPlantController.deletetodo);
-router.route("/updatebalance/:id").post(buyPlantController.updatetodo);
+router.route("/addbuyplant").post(buyPlantController.addtodo);
+
+router.route("/deletebuyplant/:id").delete(buyPlantController.deletetodo);
+router.route("/updatebuyplant/:id").post(buyPlantController.updatetodo);
 module.exports = router;
