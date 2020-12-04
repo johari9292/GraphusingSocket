@@ -39,6 +39,20 @@ exports.addtodo = (req, res) => {
     });
 };
 
+exports.addtodo = async (req, res) => {
+  const todo = new Todo(req.body);
+  try {
+    await todo.save();
+    return res.status(200).json({
+      message: "Successfully signed up!",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err),
+    });
+  }
+};
+
 exports.updatetodo = (req, res) => {
   Todo.findById(req.params.id, function (err, todo) {
     if (!todo) res.status(404).send("data is not found");
