@@ -5,7 +5,7 @@ exports.gettodo = (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.json(todos);
+      res.json(todos.sort({ created: -1 }));
     }
   });
 };
@@ -35,7 +35,7 @@ exports.addtodo = (req, res) => {
       res.status(200).json({ todo: "todo added successfully" });
     })
     .catch((err) => {
-      res.status(400).send("adding new todo failed");
+      res.status(400).send("adding new todo failed", err);
     });
 };
 

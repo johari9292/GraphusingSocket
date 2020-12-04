@@ -5,7 +5,7 @@ exports.gettodo = (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.json(todos);
+      res.json(todos.sort({ created: -1 }));
     }
   });
 };

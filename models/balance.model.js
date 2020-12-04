@@ -4,7 +4,8 @@ const BalanceSchema = new mongoose.Schema({
   user: {
     type: String,
     trim: true,
-    // required: "Name is required",
+    unique: "User already exists",
+    // required: "user is required",
   },
   balance: {
     type: String,
