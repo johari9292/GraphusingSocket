@@ -1,13 +1,14 @@
 const Todo = require("../models/balance.model");
 
 exports.gettodo = (req, res) => {
-  Todo.find(function (err, todos) {
+  // Todo.findOne({})
+  Todo.findOne({ user: req.params.id }, function (err, todos) {
     if (err) {
       console.log(err);
     } else {
       res.json(todos);
     }
-  }).sort({ created: -1 });
+  });
 };
 
 exports.deletetodo = (req, res) => {
