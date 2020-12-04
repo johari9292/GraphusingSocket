@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route("/getbalance/:id").get(balanceController.gettodo);
 
-router.route("/getbalance/:id").get(balanceController.gettodobyid);
+router.route("/getbalancge/:id").get(balanceController.gettodobyid);
 
 router.route("/addbalance").post(balanceController.addtodo);
 
