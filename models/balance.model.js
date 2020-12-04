@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
-const BalancesSchema = new mongoose.Schema({
-  user: {
+const PlantBalancesSchema = new mongoose.Schema({
+  _id: {
     type: String,
     trim: true,
     unique: "User already exists",
+
     // required: "user is required",
   },
   balance: {
@@ -25,4 +26,4 @@ const BalancesSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Balances", BalancesSchema);
+module.exports = mongoose.model("PlantBalances", PlantBalancesSchema);
