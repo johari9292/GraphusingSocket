@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
 
 const PlantBalancesSchema = new mongoose.Schema({
-  _id: {
+  user: {
     type: String,
     trim: true,
-    unique: "User already exists",
+    unique: true,
+    required: true,
+    dropDups: true,
 
     // required: "user is required",
   },
