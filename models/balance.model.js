@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ToBuySchema = new mongoose.Schema({
+const BalanceSchema = new mongoose.Schema({
   user: {
     type: String,
     trim: true,
@@ -24,4 +24,4 @@ const ToBuySchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("ToBuy", ToBuySchema);
+module.exports = mongoose.model("Balance", BalanceSchema);

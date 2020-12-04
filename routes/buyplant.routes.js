@@ -3,8 +3,6 @@ const buyPlantController = require("../controllers/buyplant.controller");
 
 const router = express.Router();
 
-router.route("/users").get(UserController.Fetchdata);
-
 router.route("/getbuyplant").get(buyPlantController.gettodo);
 
 router.route("/getbuyplant/:id").get(buyPlantController.gettodobyid);
