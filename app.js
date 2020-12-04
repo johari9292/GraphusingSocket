@@ -13,7 +13,7 @@ var cors = require("cors");
 var userRoutes = require("./routes/user.routes");
 var authRoutes = require("./routes/auth.routes");
 var buyPlantRoutes = require("./routes/buyplant.routes");
-
+var plantBalance = require("./routes/balance.routes");
 var port = process.env.PORT || 80;
 
 var app = express();
@@ -34,7 +34,7 @@ app.use(compress());
 // mount routes
 app.use("/", userRoutes);
 app.use("/", authRoutes);
-
+app.use("/", plantBalance);
 app.use("/", buyPlantRoutes);
 
 // Catch unauthorised errors
