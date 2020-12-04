@@ -3,7 +3,7 @@ const balanceController = require("../controllers/balance.controller");
 
 const router = express.Router();
 
-router.route("/getbalance").get(balanceController.gettodo);
+router.route("/getbalance/:id").get(balanceController.gettodo);
 
 router.route("/getbalance/:id").get(balanceController.gettodobyid);
 
