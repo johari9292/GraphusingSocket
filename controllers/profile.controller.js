@@ -39,42 +39,32 @@ exports.addtodo = (req, res) => {
     });
 };
 
-exports.updatetodo = (req, res) => {
-    
-        try {
-      const user = await Todo.findByIdAndUpdate(req.params.id, 
-        req.body, { new: true })
-      if (!user) {
-        return res.status(404).send({ message: 'You do not seem to be registered' })
-      }
-      res.status(201).send(user)
-    } catch (error) {
-      res.status(400).send(error)
+exports.updatetodo = (req, res) =>
+  Todo.findById(req.params.id, function (err, todo) {
+    if (!todo) {
+      res.status(404).send("data is not found");
+    } else {
+      todo.name = req.body.name;
+      todo.email = req.body.email;
+      todo.phone_number = req.body.phone_number;
+      todo.dateofbirth = req.body.dateofbirth;
+      todo.gender = req.body.gender;
+      todo.nationality = req.body.nationality;
+      todo.namenic = req.body.namenic;
+      todo.nic = req.body.nic;
+      todo.country = req.body.country;
+      todo.state = req.body.state;
+      todo.city = req.body.city;
+      todo.street = req.body.street;
+      todo.postal_code = req.body.postal_code;
+      todo.password = req.body.password;
+      todo
+        .save()
+        .then((todo) => {
+          res.json("Todo updated");
+        })
+        .catch((err) => {
+          res.status(400).send("Update not possible");
+        });
     }
-
-//   Todo.findByIdAndUpdate(req.params.id, function (err, todo) {
-//     if (!todo) res.status(404).send("data is not found");
-//     else todo.name = req.body.name;
-//     todo.email = req.body.email;
-//     todo.phone_number = req.body.phone_number;
-//     todo.dateofbirth = req.body.dateofbirth;
-//     todo.gender = req.body.gender;
-//     todo.nationality = req.body.nationality;
-//     todo.namenic = req.body.namenic;
-//     todo.nic = req.body.nic;
-//     todo.country = req.body.country;
-//     todo.state = req.body.state;
-//     todo.city = req.body.city;
-//     todo.street = req.body.street;
-//     todo.postal_code = req.body.postal_code;
-//     todo.password = req.body.password;
-//     t
-//       .save()
-//       .then((todo) => {
-//         res.json("Todo updated");
-//       })
-//       .catch((err) => {
-//         res.status(400).send("Update not possible");
-//       });
-//   });
-};
+  });
