@@ -10,37 +10,48 @@ const UserSchema = new mongoose.Schema({
 
   phone_number: {
     type: String,
+    default: "e.g +9245445445544",
   },
 
   country: {
     type: String,
+    default: "e.g Mexico",
   },
   state: {
     type: String,
+    default: "state",
   },
   city: {
     type: String,
+    default: "e.g: washington",
   },
   street: {
     type: String,
+    default: "e.g street456, ",
   },
   postal_code: {
     type: String,
+    default: "e.g 4550",
   },
-  dateofbirt: {
+  dateofbirth: {
     type: Date,
+    default: Date.now(),
   },
   gender: {
     type: String,
+    default: "e.g male",
   },
   nationality: {
     type: String,
+    default: "Mexicon",
   },
   namenic: {
     type: String,
+    default: "e.g CURP/DNI",
   },
   nic: {
     type: String,
+    default: "e.g 42343556",
   },
   email: {
     type: String,
