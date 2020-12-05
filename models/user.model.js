@@ -5,18 +5,53 @@ const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    // required: "Name is required",
+    required: "Name is required",
+  },
+
+  phone_number: {
+    type: String,
+  },
+
+  country: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  street: {
+    type: String,
+  },
+  postal_code: {
+    type: String,
+  },
+  dateofbirt: {
+    type: Date,
+  },
+  gender: {
+    type: String,
+  },
+  nationality: {
+    type: String,
+  },
+  namenic: {
+    type: String,
+  },
+  nic: {
+    type: String,
   },
   email: {
     type: String,
     trim: true,
     unique: "Email already exists",
     match: [/.+\@.+\..+/, "Please fill a valid email address"],
-    // required: "Email is required",
+    required: "Email is required",
   },
   hashed_password: {
     type: String,
-    // required: "Password is required",
+    required: "Password is required",
   },
   salt: String,
   updated: Date,
