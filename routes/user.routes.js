@@ -15,5 +15,5 @@ router
 router.param("userId", userCtrl.userByID);
 router.route("/getuser/:id").get(userCtrl.gettodobyid);
 
-router.route("/updateuser/:id").post(userCtrl.updatetodo);
+// router.route("/updateuser/:id").post(userCtrl.updatetodo);
 module.exports = router;
