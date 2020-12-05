@@ -1,31 +1,7 @@
 const User = require("../models/user.model");
 const extend = require("lodash/extend");
 const errorHandler = require("./../helpers/dbErrorHandler");
-exports.gettodobyid = (req, res) => {
-  let id = req.params.id;
-  User.findById(id, function (err, todo) {
-    res.json(todo);
-  });
-};
 
-exports.updatetodo = (req, res) => {
-  User.findById(req.params.id, function (err, todo) {
-    if (!todo) res.status(404).send("data is not found");
-    else todo.todo_description = req.body.todo_description;
-    todo.todo_responsible = req.body.todo_responsible;
-    todo.todo_priority = req.body.todo_priority;
-    todo.todo_completed = req.body.todo_completed;
-
-    todo
-      .save()
-      .then((todo) => {
-        res.json("Todo updated");
-      })
-      .catch((err) => {
-        res.status(400).send("Update not possible");
-      });
-  });
-};
 exports.create = async (req, res) => {
   const user = new User(req.body);
   try {
