@@ -13,7 +13,7 @@ router.route("/api/users").get(userCtrl.list).post(userCtrl.create);
 //   .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove);
 
 // router.param("userId", userCtrl.userByID);
-router.route("/getuser/:id").get(userCtrl.gettodobyid);
+// router.route("/getuser/:id").get(userCtrl.gettodobyid);
 
 // router.route("/updateuser/:id").post(userCtrl.updatetodo);
 module.exports = router;
