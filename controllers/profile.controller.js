@@ -42,11 +42,20 @@ exports.addtodo = (req, res) => {
 exports.updatetodo = (req, res) => {
   Todo.findById(req.params.id, function (err, todo) {
     if (!todo) res.status(404).send("data is not found");
-    else todo.todo_description = req.body.todo_description;
-    todo.todo_responsible = req.body.todo_responsible;
-    todo.todo_priority = req.body.todo_priority;
-    todo.todo_completed = req.body.todo_completed;
-
+    else todo.name = req.body.name;
+    todo.email = req.body.email;
+    todo.phone_number = req.body.phone_number;
+    todo.dateofbirth = req.body.dateofbirth;
+    todo.gender = req.body.gender;
+    todo.nationality = req.body.nationality;
+    todo.namenic = req.body.namenic;
+    todo.nic = req.body.nic;
+    todo.country = req.body.country;
+    todo.state = req.body.state;
+    todo.city = req.body.city;
+    todo.street = req.body.street;
+    todo.postal_code = req.body.postal_code;
+    todo.password = req.body.password;
     todo
       .save()
       .then((todo) => {
