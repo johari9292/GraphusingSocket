@@ -13,7 +13,7 @@ router
   .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, userCtrl.remove);
 
 router.param("userId", userCtrl.userByID);
-router.route("/getuser/:id").get(balanceController.gettodobyid);
+router.route("/getuser/:id").get(userCtrl.gettodobyid);
 
-router.route("/updateuser/:id").post(balanceController.updatetodo);
+router.route("/updateuser/:id").post(userCtrl.updatetodo);
 module.exports = router;
