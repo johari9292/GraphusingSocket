@@ -32,6 +32,11 @@ const ToBuySchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  image: {
+    type: String,
+    trim: true,
+    // required: "Name is required",
+  },
 });
 
 module.exports = mongoose.model("ToBuy", ToBuySchema);
