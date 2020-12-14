@@ -26,7 +26,9 @@ const ToBuySchema = new mongoose.Schema({
     trim: true,
     // required: "Name is required",
   },
-
+  plantdate: {
+    type: Date,
+  },
   updated: Date,
   created: {
     type: Date,
