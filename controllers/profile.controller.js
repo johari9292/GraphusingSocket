@@ -58,6 +58,7 @@ exports.updatetodo = (req, res) =>
       todo.street = req.body.street;
       todo.postal_code = req.body.postal_code;
       todo.password = req.body.password;
+      todo.image = req.body.image;
       todo
         .save()
         .then((todo) => {
