@@ -10,6 +10,11 @@ const PlantBalancesSchema = new mongoose.Schema({
 
     // required: "user is required",
   },
+  year: {
+    type: String,
+    trim: true,
+    // required: "Name is required",
+  },
   balance: {
     type: String,
     trim: true,
@@ -20,7 +25,9 @@ const PlantBalancesSchema = new mongoose.Schema({
     trim: true,
     // required: "Name is required",
   },
-
+  investeddate: {
+    type: Date,
+  },
   updated: Date,
   created: {
     type: Date,
