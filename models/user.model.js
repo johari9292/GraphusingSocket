@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     required: "Name is required",
   },
-  country: {
+  image: {
     type: String,
   },
   phone_number: {
