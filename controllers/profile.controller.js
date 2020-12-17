@@ -65,7 +65,8 @@ exports.updatetodo = (req, res) =>
           res.json("Todo updated");
         })
         .catch((err) => {
-          res.status(400).send("Update not possible", err);
+          res.status(400).send("Update not possible");
+          console.log("err", err);
         });
     }
   });
