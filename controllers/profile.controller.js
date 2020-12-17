@@ -58,14 +58,14 @@ exports.updatetodo = (req, res) =>
       todo.street = req.body.street;
       todo.postal_code = req.body.postal_code;
       todo.password = req.body.password;
-
+      todo.image = req.body.image;
       todo
         .save()
         .then((todo) => {
           res.json("Todo updated");
         })
         .catch((err) => {
-          res.status(400).send("Update not possible");
+          res.status(400).send("Update not possible", err);
         });
     }
   });
