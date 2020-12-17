@@ -47,7 +47,7 @@ exports.updatetodo = (req, res) =>
       todo.name = req.body.name;
       todo.email = req.body.email;
       todo.phone_number = req.body.phone_number;
-      todo.dateofbirth = req.body.dateofbirth;
+      todo.dateofbirt = req.body.dateofbirt;
       todo.gender = req.body.gender;
       todo.nationality = req.body.nationality;
       todo.namenic = req.body.namenic;
