@@ -19,14 +19,15 @@ exports.create = async (req, res) => {
     text: "That was easy!" + email,
     html: "<b>Hello world?</b> <b>Hello world?</b>",
   };
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
+
   try {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
     await user.save();
     return res.status(200).json({
       message: "Successfully signed up!",
