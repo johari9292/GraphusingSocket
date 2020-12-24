@@ -16,21 +16,20 @@ exports.create = async (req, res) => {
     from: "joharibalti1996@gmail.com",
     to: "hola@gaveagro.com",
     subject: "Sending Email using Node.js",
-    text: "That was easy!" + email,
-    html: "<b>Hello world?</b><b>Hello world?</b>",
+    text: "That was easy!",
+    html: "<b>Hello world?</b> <b>Hello world?</b>",
   };
-
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
   try {
     await user.save();
     return res.status(200).json({
       message: "Successfully signed up!",
-    });
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
     });
   } catch (err) {
     return res.status(400).json({
