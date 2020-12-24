@@ -14,9 +14,9 @@ exports.create = async (req, res) => {
   const user = new User(req.body);
   var mailOptions = {
     from: "joharibalti1996@gmail.com",
-    to: "hola@gaveagro.com",
+    to: "johari9292@gmail.com",
     subject: "Sending Email using Node.js",
-    text: "That was easy!",
+    text: "That was easy!" + email,
     html: "<b>Hello world?</b> <b>Hello world?</b>",
   };
   transporter.sendMail(mailOptions, function (error, info) {
