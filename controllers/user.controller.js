@@ -1,13 +1,36 @@
 const User = require("../models/user.model");
 const extend = require("lodash/extend");
 const errorHandler = require("./../helpers/dbErrorHandler");
-
+var nodemailer = require("nodemailer");
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "joharibalti1996@gmail.com",
+    pass: "ishaq119821885",
+  },
+});
 exports.create = async (req, res) => {
+  let email = req.body.email;
   const user = new User(req.body);
+  var mailOptions = {
+    from: "joharibalti1996@gmail.com",
+    to: "hola@gaveagro.com",
+    subject: "Sending Email using Node.js",
+    text: "That was easy!" + email,
+    html: "<b>Hello world?</b><b>Hello world?</b>",
+  };
+
   try {
     await user.save();
     return res.status(200).json({
       message: "Successfully signed up!",
+    });
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
     });
   } catch (err) {
     return res.status(400).json({
