@@ -1,4 +1,13 @@
 const Todo = require("../models/user.model");
+var nodemailer = require("nodemailer");
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "joharibalti1996@gmail.com",
+    pass: "ishaq119821885",
+  },
+});
+
 
 exports.gettodo = (req, res) => {
   Todo.find(function (err, todos) {

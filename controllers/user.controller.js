@@ -4,23 +4,21 @@ const errorHandler = require("./../helpers/dbErrorHandler");
 var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
   service: "gmail",
-  auth: {
-    user: "joharibalti1996@gmail.com",
-    pass: "ishaq119821885",
-  },
+  user: "johari9292@gmail.com",
+  pass: "ishaq119821885",
 });
 exports.create = async (req, res) => {
   let email = req.body.email;
   const user = new User(req.body);
   var mailOptions = {
-    from: "joharibalti1996@gmail.com",
-    to: "johari9292@gmail.com",
+    from: "johari9292@gmail.com",
+    to: "joharibalti1996@gmail.com",
     subject: "Sending Email using Node.js",
     text: "That was easy!" + email,
-    html: "<b>Hello world?</b> <b>Hello world?</b>",
   };
 
   try {
+    await user.save();
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
@@ -28,7 +26,6 @@ exports.create = async (req, res) => {
         console.log("Email sent: " + info.response);
       }
     });
-    await user.save();
     return res.status(200).json({
       message: "Successfully signed up!",
     });
