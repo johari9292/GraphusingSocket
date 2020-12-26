@@ -8,7 +8,6 @@ var transporter = nodemailer.createTransport({
   },
 });
 
-
 exports.gettodo = (req, res) => {
   Todo.find(function (err, todos) {
     if (err) {
@@ -71,6 +70,20 @@ exports.updatetodo = (req, res) =>
       todo
         .save()
         .then((todo) => {
+          var mailOptions = {
+            from: "johari9292@gmail.com",
+            to: "joharibalti1996@gmail.com",
+            subject: "Sending Email using Node.js",
+            text: "That was easy!",
+          };
+
+          transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+              console.log(error);
+            } else {
+              console.log("Email sent: " + info.response);
+            }
+          });
           res.json("Todo updated");
         })
         .catch((err) => {
