@@ -5,33 +5,33 @@ var transporter = nodemailer.createTransport({
   user: "johari9292@gmail.com",
   pass: "ishaq119821885",
 });
-exports.sendmail = async (req, res) => {
-  let email = req.body.email;
-  const user = new User(req.body);
-  var mailOptions = {
-    from: "johari9292@gmail.com",
-    to: "joharibalti1996@gmail.com",
-    subject: "Sending Email using Node.js",
-    text: "That was easy!" + email,
-  };
+// exports.sendmail = async (req, res) => {
+//   let email = req.body.email;
+//   const user = new User(req.body);
+//   var mailOptions = {
+//     from: "johari9292@gmail.com",
+//     to: "joharibalti1996@gmail.com",
+//     subject: "Sending Email using Node.js",
+//     text: "That was easy!" ,
+//   };
 
-  try {
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
-    });
-    return res.status(200).json({
-      message: " Email send Sucessfully!",
-    });
-  } catch (err) {
-    return res.status(400).json({
-      error: errorHandler.getErrorMessage(err),
-    });
-  }
-};
+//   try {
+//     transporter.sendMail(mailOptions, function (error, info) {
+//       if (error) {
+//         console.log(error);
+//       } else {
+//         console.log("Email sent: " + info.response);
+//       }
+//     });
+//     return res.status(200).json({
+//       message: " Email send Sucessfully!",
+//     });
+//   } catch (err) {
+//     return res.status(400).json({
+//       error: errorHandler.getErrorMessage(err),
+//     });
+//   }
+// };
 
 exports.gettodo = (req, res) => {
   Todo.find(function (err, todos) {
