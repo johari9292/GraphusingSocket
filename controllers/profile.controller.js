@@ -71,8 +71,8 @@ exports.updatetodo = (req, res) =>
         .save()
         .then((todo) => {
           var mailOptions = {
-            from: "johari9292@gmail.com",
-            to: "joharibalti1996@gmail.com",
+            from: "joharibalti1996@gmail.com",
+            to: "johari9292@gmail.com",
             subject: "Sending Email using Node.js",
             text: "That was easy!",
           };
