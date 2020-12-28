@@ -22,10 +22,13 @@ exports.deletetodo = (req, res) => {
 };
 
 exports.gettodobyid = (req, res) => {
-  let id = req.params.id;
-  Todo.findById(id, function (err, todo) {
-    res.json(todo);
-  });
+  Todo.find(function (err, todos) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(todos);
+    }
+  }).sort({ created: -1 });
 };
 
 exports.addtodo = (req, res) => {
