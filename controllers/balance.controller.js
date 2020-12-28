@@ -12,13 +12,15 @@ exports.gettodo = (req, res) => {
 };
 
 exports.deletetodo = (req, res) => {
-  Todo.remove({ _id: req.params.id }, function (err) {
-    if (!err) {
-      res.status(200).send({ status: "deleted" });
-    } else {
-      res.status(500).send({ status: "error" });
-    }
-  });
+  Todo.remove(
+    { _id: req.params.id }.then(function (err) {
+      if (!err) {
+        res.status(200).send({ status: "deleted" });
+      } else {
+        res.status(500).send({ status: "error" });
+      }
+    })
+  );
 };
 
 exports.gettodobyid = (req, res) => {
