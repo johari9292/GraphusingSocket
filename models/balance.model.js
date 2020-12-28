@@ -15,6 +15,11 @@ const PlantBalancesSchema = new mongoose.Schema({
     trim: true,
     // required: "Name is required",
   },
+  name: {
+    type: String,
+    trim: true,
+    // required: "Name is required",
+  },
   balance: {
     type: String,
     trim: true,
