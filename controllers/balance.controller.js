@@ -13,7 +13,7 @@ exports.gettodo = (req, res) => {
 
 exports.deletetodo = (req, res) => {
   Todo.remove(
-    { _id: req.params.id }.then(function (err) {
+    { _id: req.params.id }).then((err) => {
       if (!err) {
         res.status(200).send({ status: "deleted" });
       } else {
