@@ -4,6 +4,10 @@ const PlantBalancesSchema = new mongoose.Schema({
   user: {
     type: String,
     trim: true,
+    unique: true,
+    required: true,
+    dropDups: true,
+
     // required: "user is required",
   },
   year: {
