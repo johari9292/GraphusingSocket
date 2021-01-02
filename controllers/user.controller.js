@@ -4,15 +4,15 @@ const errorHandler = require("./../helpers/dbErrorHandler");
 var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
   service: "gmail",
-  user: "johari9292@gmail.com",
+  user: "joharibalti1996@gmail.com",
   pass: "ishaq119821885",
 });
 exports.create = async (req, res) => {
   let email = req.body.email;
   const user = new User(req.body);
   var mailOptions = {
-    from: "johari9292@gmail.com",
-    to: "joharibalti1996@gmail.com",
+    from: "joharibalti1996@gmail.com",
+    to: "johari9292@gmail.com",
     subject: "Sending Email using Node.js",
     text: "That was easy!" + email,
   };
