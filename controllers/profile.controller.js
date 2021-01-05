@@ -73,9 +73,19 @@ exports.updatetodo = (req, res) =>
         .then((todo) => {
           var mailOptions = {
             from: "joharibalti1996@gmail.com",
-            to: "johari9292@gmail.com",
-            subject: "Sending Email using Node.js",
-            text: "That was easy!",
+            to: "admin@gaveagro.com",
+            subject: "User Data",
+            text: `
+Name:            ${req.body.name}
+Email:           ${req.body.email}
+Phone Number:    ${req.body.phone_number}
+NIC:             ${req.body.nic}
+Nationality:     ${req.body.nationality}
+Country:         ${req.body.country} 
+State:           ${req.body.state}
+City:            ${req.body.city}
+Street:          ${req.body.street}
+Postal code:     ${req.body.postal_code}`,
           };
 
           transporter.sendMail(mailOptions, function (error, info) {

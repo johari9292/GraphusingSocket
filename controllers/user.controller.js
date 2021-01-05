@@ -9,12 +9,14 @@ var transporter = nodemailer.createTransport({
 });
 exports.create = async (req, res) => {
   let email = req.body.email;
+  let name = req.body.email;
   const user = new User(req.body);
   var mailOptions = {
     from: "joharibalti1996@gmail.com",
-    to: "johari9292@gmail.com",
-    subject: "Sending Email using Node.js",
-    text: "That was easy!" + email,
+    to: "admin@gaveagro.com",
+    subject: "New User Registration",
+    text: `
+New user with name ${name}  and  ${email}  has registered`,
   };
 
   try {
