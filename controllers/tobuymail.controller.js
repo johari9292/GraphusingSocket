@@ -21,12 +21,20 @@ Name:            ${req.params.name}
 Email:           ${req.params.email} 
 Plant Name:      ${req.params.plant}`,
   };
-
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
+  try {
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+    return res.status(200).json({
+      message: "Mailed successfully!",
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: "Error !",
+    });
+  }
 };
