@@ -17,9 +17,9 @@ exports.buyemail = (req, res) => {
     subject: "Plant Purchase Request from Customer",
     text: `
 Hi! Good News for you following customer is interested to buy Plant,
-Name:            ${req.params.name}
-Email:           ${req.params.email} 
-Plant Name:      ${req.params.plant}`,
+Name:            ${req.body.name}
+Email:           ${req.body.email} 
+Plant Name:      ${req.body.plant}`,
   };
   try {
     transporter.sendMail(mailOptions, function (error, info) {
