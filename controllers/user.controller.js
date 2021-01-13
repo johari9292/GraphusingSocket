@@ -4,8 +4,11 @@ const errorHandler = require("./../helpers/dbErrorHandler");
 var nodemailer = require("nodemailer");
 var transporter = nodemailer.createTransport({
   service: "gmail",
-  user: "joharibalti1996@gmail.com",
-  pass: "ishaq119821885",
+  host: "smtp.gmail.com",
+  auth: {
+    user: "joharibalti1996@gmail.com",
+    pass: "ishaq119821885",
+  },
 });
 exports.create = async (req, res) => {
   let email = req.body.email;
