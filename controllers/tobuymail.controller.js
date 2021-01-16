@@ -12,7 +12,7 @@ var transporter = nodemailer.createTransport({
 exports.buyemail = (req, res) => {
   var mailOptions = {
     from: "johari9292@gmail.com",
-    to: "admin@gaveagro.com",
+    to: "hola@gaveagro.com",
     // to:'joharibalti1996@gmail.com',
     subject: "Plant Purchase Request from Customer",
     text: `
