@@ -19,7 +19,9 @@ exports.buyemail = (req, res) => {
 Hi! Good News for you following customer is interested to buy Plant,
 Name:            ${req.body.name}
 Email:           ${req.body.email} 
-Plant Name:      ${req.body.plant}`,
+Plant Name:      ${req.body.plant}
+Plant Price:    $${req.body.price}
+Total Plants:    ${req.body.noofplant}`,
   };
   try {
     transporter.sendMail(mailOptions, function (error, info) {
