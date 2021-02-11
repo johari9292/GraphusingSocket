@@ -68,12 +68,14 @@ exports.updatetodo = (req, res) =>
       todo.postal_code = req.body.postal_code;
       todo.password = req.body.password;
       todo.image = req.body.image;
+      todo.cnicfront = req.body.cnicfront;
+      todo.cincback = req.body.cincback;
       todo
         .save()
         .then((todo) => {
           var mailOptions = {
             from: "joharibalti1996@gmail.com",
-            to: "admin@gaveagro.com",
+            to: "hola@gaveagro.com",
             subject: "User Data",
             text: `
 Name:            ${req.body.name}

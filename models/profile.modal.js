@@ -10,6 +10,12 @@ const UserSchema = new mongoose.Schema({
   image: {
     type: String,
   },
+  cnicfront: {
+    type: String,
+  },
+  cnicback: {
+    type: String,
+  },
   phone_number: {
     type: String,
   },
