@@ -15,6 +15,7 @@ var authRoutes = require("./routes/auth.routes");
 var buyPlantRoutes = require("./routes/buyplant.routes");
 var plantBalance = require("./routes/balance.routes");
 var profile = require("./routes/profile.routes");
+var payment = require("./routes/profile.routes");
 var port = process.env.PORT || 80;
 
 var app = express();
@@ -38,6 +39,7 @@ app.use("/", authRoutes);
 app.use("/", plantBalance);
 app.use("/", buyPlantRoutes);
 app.use("/", profile);
+app.use("/", payment);
 // Catch unauthorised errors
 app.use((err, req, res, next) => {
   if (err.name === "UnauthorizedError") {
