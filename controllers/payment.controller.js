@@ -49,9 +49,9 @@ exports.deletetodo = (req, res) => {
 };
 
 exports.gettodobyid = (req, res) => {
-  let id = req.params.id;
-  Todo.find({ user: id }, function (err, todo) {
-    res.json(todo);
+  let ids = req.params.id;
+  Todo.find({ user: ids }, function (err, todos) {
+    res.json(todos);
   });
 };
 
