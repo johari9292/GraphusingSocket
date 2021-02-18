@@ -2,7 +2,7 @@ const Todo = require("../models/balance.model");
 
 exports.gettodo = (req, res) => {
   // Todo.findOne({})
-  Todo.findOne({ user: req.params.id }, function (err, todos) {
+  Todo.find({ user: req.params.id }, function (err, todos) {
     if (err) {
       console.log(err);
     } else {
@@ -43,19 +43,19 @@ exports.addtodo = (req, res) => {
     });
 };
 
-exports.addtodo = async (req, res) => {
-  const todo = new Todo(req.body);
-  try {
-    await todo.save();
-    return res.status(200).json({
-      message: "Successfully signed up!",
-    });
-  } catch (err) {
-    return res.status(400).json({
-      error: errorHandler.getErrorMessage(err),
-    });
-  }
-};
+// exports.addtodo = async (req, res) => {
+//   const todo = new Todo(req.body);
+//   try {
+//     await todo.save();
+//     return res.status(200).json({
+//       message: "Successfully signed up!",
+//     });
+//   } catch (err) {
+//     return res.status(400).json({
+//       error: errorHandler.getErrorMessage(err),
+//     });
+//   }
+// };
 
 exports.updatetodo = (req, res) => {
   Todo.findById(req.params.id, function (err, todo) {
