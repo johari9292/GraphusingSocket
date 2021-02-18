@@ -49,7 +49,7 @@ exports.deletetodo = (req, res) => {
 };
 
 exports.gettodobyid = (req, res) => {
-  Todo.find({ user: "5fe4f540c9f4d800173cd622" }, function (err, todos) {
+  Todo.findOne({ user: req.params.id }, function (err, todos) {
     res.json(todos);
   });
 };
