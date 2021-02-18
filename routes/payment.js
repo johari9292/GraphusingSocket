@@ -3,7 +3,7 @@ const Payment = require("../controllers/payment.controller");
 
 const router = express.Router();
 
-router.route("/getpayment/:ids").get(Payment.gettodo);
+router.route("/getpaymentd/:ids").get(Payment.gettodo);
 
 router.route("/getpayment/:id").get(Payment.gettodobyid);
 
