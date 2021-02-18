@@ -3,9 +3,9 @@ const Payment = require("../controllers/payment.controller");
 
 const router = express.Router();
 
-router.route("/getpayment/:id").get(Payment.gettodo);
+router.route("/getpayment/:ids").get(Payment.gettodo);
 
-router.route("/getpayment/").get(Payment.gettodobyid);
+router.route("/getpayment/:id").get(Payment.gettodobyid);
 
 router.route("/addpayment/").post(Payment.addtodo);
 

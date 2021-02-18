@@ -50,7 +50,7 @@ exports.deletetodo = (req, res) => {
 
 exports.gettodobyid = (req, res) => {
   let id = req.params.id;
-  Todo.findById(id, function (err, todo) {
+  Todo.find({ user: id }, function (err, todo) {
     res.json(todo);
   });
 };
