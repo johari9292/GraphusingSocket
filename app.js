@@ -15,7 +15,7 @@ var authRoutes = require("./routes/auth.routes");
 var buyPlantRoutes = require("./routes/buyplant.routes");
 var plantBalance = require("./routes/balance.routes");
 var profile = require("./routes/profile.routes");
-var payment = require("./routes/profile.routes");
+var payment = require("./routes/payment");
 var port = process.env.PORT || 80;
 
 var app = express();
