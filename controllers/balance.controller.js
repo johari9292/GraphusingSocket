@@ -2,7 +2,7 @@ const Todo = require("../models/balance.model");
 
 exports.gettodo = (req, res) => {
   // Todo.findOne({})
-  Todo.find({ user: req.params.id }, function (err, todos) {
+  Todo.findOne({ user: req.params.id }, function (err, todos) {
     if (err) {
       console.log(err);
     } else {
