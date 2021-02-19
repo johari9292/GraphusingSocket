@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
 
-const PaymentSchema = new mongoose.Schema({
+const PaymentsSchema = new mongoose.Schema({
   user: {
     type: String,
     trim: true,
   },
   bank: {
+    type: String,
+    trim: true,
+    // required: "Name is required",
+  },
+  name: {
     type: String,
     trim: true,
     // required: "Name is required",
@@ -35,4 +40,4 @@ const PaymentSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Payment", PaymentSchema);
+module.exports = mongoose.model("Payments", PaymentsSchema);
