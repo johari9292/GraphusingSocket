@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserBalancesSchema = new mongoose.Schema({
+const UserBalancessSchema = new mongoose.Schema({
   user: {
     type: String,
     trim: true,
@@ -25,6 +25,11 @@ const UserBalancesSchema = new mongoose.Schema({
     trim: true,
     // required: "Name is required",
   },
+  species: {
+    type: String,
+    trim: true,
+    // required: "Name is required",
+  },
   investeddate: {
     type: Date,
   },
@@ -35,4 +40,4 @@ const UserBalancesSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("UserBalances", UserBalancesSchema);
+module.exports = mongoose.model("UserBalancess", UserBalancessSchema);
