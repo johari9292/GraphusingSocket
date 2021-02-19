@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const PlantBalancesSchema = new mongoose.Schema({
+const UserBalancesSchema = new mongoose.Schema({
   user: {
     type: String,
     trim: true,
@@ -35,4 +35,4 @@ const PlantBalancesSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("PlantBalances", PlantBalancesSchema);
+module.exports = mongoose.model("UserBalances", UserBalancesSchema);

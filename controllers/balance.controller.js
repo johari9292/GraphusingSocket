@@ -10,7 +10,11 @@ exports.gettodo = (req, res) => {
     }
   });
 };
-
+exports.getuserBalance = (req, res) => {
+  Todo.find({ user: req.params.id }, function (err, todos) {
+    res.json(todos);
+  });
+};
 exports.deletetodo = (req, res) => {
   Todo.remove({ _id: req.params.id }, function (err) {
     if (!err) {
@@ -43,19 +47,19 @@ exports.addtodo = (req, res) => {
     });
 };
 
-// exports.addtodo = async (req, res) => {
-//   const todo = new Todo(req.body);
-//   try {
-//     await todo.save();
-//     return res.status(200).json({
-//       message: "Successfully signed up!",
-//     });
-//   } catch (err) {
-//     return res.status(400).json({
-//       error: errorHandler.getErrorMessage(err),
-//     });
-//   }
-// };
+exports.addtodo = async (req, res) => {
+  const todo = new Todo(req.body);
+  try {
+    await todo.save();
+    return res.status(200).json({
+      message: "Successfully signed up!",
+    });
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err),
+    });
+  }
+};
 
 exports.updatetodo = (req, res) => {
   Todo.findById(req.params.id, function (err, todo) {
