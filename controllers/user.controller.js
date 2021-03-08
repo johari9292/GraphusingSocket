@@ -12,14 +12,25 @@ var transporter = nodemailer.createTransport({
 });
 exports.create = async (req, res) => {
   let email = req.body.email;
-  let name = req.body.email;
+  let name = req.body.name;
   const user = new User(req.body);
   var mailOptions = {
-    from: "joharibalti1996@gmail.com",
+    from: "gaveagro1996@gmail.com",
     to: "hola@gaveagro.com",
     subject: "New User Registration",
     text: `
-New user with name ${name}  and  ${email}  has registered`,
+New user with name ${name}  and  ${email}  has registered
+User Details
+Name:            ${req.body.name}
+Email:           ${req.body.email}
+Phone Number:    ${req.body.phone_number}
+NIC:             ${req.body.nic}
+Nationality:     ${req.body.nationality}
+Country:         ${req.body.country} 
+State:           ${req.body.state}
+City:            ${req.body.city}
+Street:          ${req.body.street}
+Postal code:     ${req.body.postal_code}`,
   };
 
   try {

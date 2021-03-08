@@ -4,6 +4,7 @@ const BuyEmailController = require("../controllers/tobuymail.controller");
 const router = express.Router();
 
 router.route("/sendemail").post(BuyEmailController.buyemail);
+router.route("/sellemail").post(BuyEmailController.sellmail);
 router.route("/getbuyplant").get(buyPlantController.gettodo);
 
 router.route("/getbuyplant/:id").get(buyPlantController.gettodobyid);
