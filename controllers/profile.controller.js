@@ -74,7 +74,7 @@ exports.updatetodo = (req, res) =>
         .save()
         .then((todo) => {
           var mailOptions = {
-            from: "joharibalti1996@gmail.com",
+            from: "gaveagro2022@gmail.com",
             to: "hola@gaveagro.com",
             subject: "User Data",
             text: `
