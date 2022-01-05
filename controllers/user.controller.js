@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
   let name = req.body.name;
   const user = new User(req.body);
   var mailOptions = {
-    from: "gaveagro1996@gmail.com",
+    from: "gaveagro2022@gmail.com",
     to: "hola@gaveagro.com",
     subject: "New User Registration",
     text: `
