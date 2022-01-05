@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport({
 //   let email = req.body.email;
 //   const user = new User(req.body);
 //   var mailOptions = {
-//     from: "johari9292@gmail.com",
+//     from: "gaveagro2022@gmail.com",
 //     to: "joharibalti1996@gmail.com",
 //     subject: "Sending Email using Node.js",
 //     text: "That was easy!" ,
