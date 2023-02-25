@@ -50,9 +50,9 @@ app.use((err, req, res, next) => {
   }
 });
 
-server.listen(process.env.PORT || 3000, (err) => {
+server.listen(process.env.PORT || 8000, (err) => {
   if (err) {
     console.log(err);
   }
-  console.info("Server started on port %s.", process.env.PORT || 3000);
+  console.info("Server started on port %s.", process.env.PORT || 5000);
 });

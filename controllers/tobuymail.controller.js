@@ -43,7 +43,7 @@ Total Plants:    ${req.body.noofplant}`,
 
 exports.sellmail = (req, res) => {
   var mailOptions = {
-    from: "gaveagro2022@gmail.com",
+    from: "johari9292@gmail.com",
     to: "hola@gaveagro.com",
     // to:'joharibalti1996@gmail.com',
     subject: "Plant Sell Request from Customer",

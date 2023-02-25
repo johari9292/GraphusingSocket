@@ -33,6 +33,18 @@ const UserBalancessSchema = new mongoose.Schema({
   investeddate: {
     type: Date,
   },
+  url: {
+    type: String,
+    trim: true,
+  },
+  lat: {
+    type: String,
+    trim: true,
+  },
+  lng: {
+    type: String,
+    trim: true,
+  },
   updated: Date,
   created: {
     type: Date,
