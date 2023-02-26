@@ -4,8 +4,8 @@ var transporter = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
   auth: {
-    user: "gaveagro2022@gmail.com",
-    pass: "ishaq119821885",
+    user: "sisd.admn@gmail.com",
+    pass: "nzdmpyghoafiveua",
   },
 });
 
@@ -74,7 +74,7 @@ exports.updatetodo = (req, res) =>
         .save()
         .then((todo) => {
           var mailOptions = {
-            from: "gaveagro2022@gmail.com",
+            from: "sisd.admn@gmail.com",
             to: "hola@gaveagro.com",
             subject: "User Data",
             text: `

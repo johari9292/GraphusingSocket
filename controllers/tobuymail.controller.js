@@ -3,16 +3,16 @@ var nodemailer = require("nodemailer");
 
 var transporter = nodemailer.createTransport({
   service: "gmail",
-  host: "smtp.gmail.com",
+  // host: "smtp.gmail.com",
   auth: {
-    user: "gaveagro2022@gmail.com",
-    pass: "ishaq119821885",
+    user: "sisd.admn@gmail.com",
+    pass: "nzdmpyghoafiveua",
   },
 });
 exports.buyemail = (req, res) => {
   var mailOptions = {
-    from: "gaveagro2022@gmail.com",
-    to: "hola@gaveagro.com",
+    from: "sisd.admn@gmail.com",
+    to: "johari9292@gmail.com",
     // to:'joharibalti1996@gmail.com',
     subject: "Plant Purchase Request from Customer",
     text: `
@@ -43,7 +43,7 @@ Total Plants:    ${req.body.noofplant}`,
 
 exports.sellmail = (req, res) => {
   var mailOptions = {
-    from: "gaveagro2022@gmail.com",
+    from: "sisd.admn@gmail.com",
     to: "hola@gaveagro.com",
     // to:'joharibalti1996@gmail.com',
     subject: "Plant Sell Request from Customer",

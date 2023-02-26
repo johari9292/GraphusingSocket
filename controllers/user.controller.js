@@ -6,8 +6,8 @@ var transporter = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
   auth: {
-    user: "gaveagro2022@gmail.com",
-    pass: "ishaq119821885",
+    user: "sisd.admn@gmail.com",
+    pass: "nzdmpyghoafiveua",
   },
 });
 exports.create = async (req, res) => {
@@ -15,7 +15,7 @@ exports.create = async (req, res) => {
   let name = req.body.name;
   const user = new User(req.body);
   var mailOptions = {
-    from: "gaveagro2022@gmail.com",
+    from: "sisd.admn@gmail.com",
     to: "hola@gaveagro.com",
     subject: "New User Registration",
     text: `
