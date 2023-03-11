@@ -5,7 +5,8 @@ const authCtrl = require("../controllers/auth.controller");
 const router = express.Router();
 
 router.route("/api/users").get(userCtrl.list).post(userCtrl.create);
-
+router.route("/api/forget-password").post(userCtrl.forgotPassword);
+router.route("/api/reset-password").post(userCtrl.verifyOtpAndUpdatePassword);
 // router
 //   .route("/api/users/:userId")
 //   .get(authCtrl.requireSignin, userCtrl.read)

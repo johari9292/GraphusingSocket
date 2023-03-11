@@ -2,6 +2,8 @@ const User = require("../models/user.model");
 const extend = require("lodash/extend");
 const errorHandler = require("./../helpers/dbErrorHandler");
 var nodemailer = require("nodemailer");
+
+const { randomInt } = require("crypto");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
@@ -47,6 +49,93 @@ Postal code:     ${req.body.postal_code}`,
     });
   } catch (err) {
     return res.status(400).json({
+      error: errorHandler.getErrorMessage(err),
+    });
+  }
+};
+exports.forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        error: "User not found",
+      });
+    }
+
+    const otp = randomInt(100000, 999999);
+    user.otp = otp;
+    user.otpExpires = Date.now() + 10 * 60 * 1000; // otp expires in 10 minutes
+    await user.save();
+
+    const mailOptions = {
+      from: "sisd.admn@gmail.com",
+      to: email,
+      subject: "GaveAgro Password reset OTP",
+      text: `Your one-time password (OTP) for password reset is: ${otp}`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        return res.status(500).json({
+          error: "Failed to send OTP. Please try again later.",
+        });
+      } else {
+        console.log("OTP sent: " + info.response);
+        return res.status(200).json({
+          message: "OTP sent successfully.",
+        });
+      }
+    });
+  } catch (err) {
+    return res.status(500).json({
+      error: errorHandler.getErrorMessage(err),
+    });
+  }
+};
+
+exports.verifyOtpAndUpdatePassword = async (req, res) => {
+  const { email, otp, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        error: "User not found",
+      });
+    }
+
+    if (user.otp !== otp || user.otpExpires < Date.now()) {
+      return res.status(401).json({
+        error: "Invalid or expired OTP",
+      });
+    }
+
+    user.password = password;
+    user.otp = undefined;
+    user.otpExpires = undefined;
+    await user.save();
+
+    const mailOptions = {
+      from: "sisd.admn@gmail.com",
+      to: email,
+      subject: "GaveAgro Password reset successful",
+      text: `Your password is ${password} & it has been successfully reset. If you did not initiate this request, please contact our support team immediately.`,
+    };
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
+
+    return res.status(200).json({
+      message: "Password reset successfully.",
+    });
+  } catch (err) {
+    return res.status(500).json({
       error: errorHandler.getErrorMessage(err),
     });
   }
