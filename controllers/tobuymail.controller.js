@@ -5,13 +5,13 @@ var transporter = nodemailer.createTransport({
   service: "gmail",
   // host: "smtp.gmail.com",
   auth: {
-    user: "sisd.admn@gmail.com",
-    pass: "nzdmpyghoafiveua",
+    user: "gaveagro2022@gmail.com",
+    pass: "xqksrhtfzdcraxwz",
   },
 });
 exports.buyemail = (req, res) => {
   var mailOptions = {
-    from: "sisd.admn@gmail.com",
+    from: "gaveagro2022@gmail.com",
     to: "hola@gaveagro.com",
     // to:'joharibalti1996@gmail.com',
     subject: "Plant Purchase Request from Customer",
@@ -43,7 +43,7 @@ Total Plants:    ${req.body.noofplant}`,
 
 exports.sellmail = (req, res) => {
   var mailOptions = {
-    from: "sisd.admn@gmail.com",
+    from: "gaveagro2022@gmail.com",
     to: "hola@gaveagro.com",
     // to:'joharibalti1996@gmail.com',
     subject: "Plant Sell Request from Customer",

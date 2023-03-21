@@ -2,14 +2,14 @@ const User = require("../models/user.model");
 const extend = require("lodash/extend");
 const errorHandler = require("./../helpers/dbErrorHandler");
 var nodemailer = require("nodemailer");
-
+// meojnnvcdbcxyzni;
 const { randomInt } = require("crypto");
 var transporter = nodemailer.createTransport({
   service: "gmail",
   host: "smtp.gmail.com",
   auth: {
-    user: "sisd.admn@gmail.com",
-    pass: "nzdmpyghoafiveua",
+    user: "gaveagro2022@gmail.com",
+    pass: "xqksrhtfzdcraxwz",
   },
 });
 exports.create = async (req, res) => {
@@ -17,7 +17,7 @@ exports.create = async (req, res) => {
   let name = req.body.name;
   const user = new User(req.body);
   var mailOptions = {
-    from: "sisd.admn@gmail.com",
+    from: "gaveagro2022@gmail.com",
     to: "hola@gaveagro.com",
     subject: "New User Registration",
     text: `
@@ -69,7 +69,7 @@ exports.forgotPassword = async (req, res) => {
     await user.save();
 
     const mailOptions = {
-      from: "sisd.admn@gmail.com",
+      from: "gaveagro2022@gmail.com",
       to: email,
       subject: "GaveAgro Password reset OTP",
       text: `Your one-time password (OTP) for password reset is: ${otp}`,
@@ -117,7 +117,7 @@ exports.verifyOtpAndUpdatePassword = async (req, res) => {
     await user.save();
 
     const mailOptions = {
-      from: "sisd.admn@gmail.com",
+      from: "gaveagro2022@gmail.com",
       to: email,
       subject: "GaveAgro Password reset successful",
       text: `Your password is ${password} & it has been successfully reset. If you did not initiate this request, please contact our support team immediately.`,
