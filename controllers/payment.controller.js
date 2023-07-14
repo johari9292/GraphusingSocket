@@ -1,45 +1,19 @@
-const Todo = require("../models/payment");
+const Payment = require("../models/payment");
 
-// exports.sendmail = async (req, res) => {
-//   let email = req.body.email;
-//   const user = new User(req.body);
-//   var mailOptions = {
-//     from: "johari9292@gmail.com",
-//     to: "joharibalti1996@gmail.com",
-//     subject: "Sending Email using Node.js",
-//     text: "That was easy!" ,
-//   };
-
-//   try {
-//     transporter.sendMail(mailOptions, function (error, info) {
-//       if (error) {
-//         console.log(error);
-//       } else {
-//         console.log("Email sent: " + info.response);
-//       }
-//     });
-//     return res.status(200).json({
-//       message: " Email send Sucessfully!",
-//     });
-//   } catch (err) {
-//     return res.status(400).json({
-//       error: errorHandler.getErrorMessage(err),
-//     });
-//   }
-// };
-
-exports.gettodo = (req, res) => {
-  Todo.find(function (err, todos) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(todos);
-    }
-  }).sort({ created: -1 });
+exports.getPayments = (req, res) => {
+  Payment.find()
+    .sort({ created: -1 })
+    .exec((err, payments) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(payments);
+      }
+    });
 };
 
-exports.deletetodo = (req, res) => {
-  Todo.remove({ _id: req.params.id }, function (err) {
+exports.deletePayment = (req, res) => {
+  Payment.remove({ _id: req.params.id }, (err) => {
     if (!err) {
       res.status(200).send({ status: "deleted" });
     } else {
@@ -48,39 +22,45 @@ exports.deletetodo = (req, res) => {
   });
 };
 
-exports.gettodobyid = (req, res) => {
-  Todo.find({ user: req.params.id }, function (err, todos) {
-    res.json(todos);
+exports.getPaymentsByUser = (req, res) => {
+  Payment.find({ user: req.params.id }, (err, payments) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(payments);
+    }
   });
 };
 
-exports.addtodo = (req, res) => {
-  let todo = new Todo(req.body);
-  todo
+exports.addPayment = (req, res) => {
+  const payment = new Payment(req.body);
+  payment
     .save()
-    .then((todo) => {
-      res.status(200).json({ todo: "todo added successfully" });
+    .then(() => {
+      res.status(200).json({ message: "Payment added successfully" });
     })
     .catch((err) => {
-      res.status(400).send("adding new todo failed");
+      res.status(400).send("Adding new payment failed");
     });
 };
 
-exports.updatetodo = (req, res) => {
-  Todo.findById(req.params.id, function (err, todo) {
-    if (!todo) res.status(404).send("data is not found");
-    else todo.todo_description = req.body.todo_description;
-    todo.todo_responsible = req.body.todo_responsible;
-    todo.todo_priority = req.body.todo_priority;
-    todo.todo_completed = req.body.todo_completed;
+exports.updatePayment = (req, res) => {
+  Payment.findById(req.params.id, (err, payment) => {
+    if (!payment) {
+      res.status(404).send("Data is not found");
+    } else {
+      payment.payment_description = req.body.payment_description;
+      payment.payment_amount = req.body.payment_amount;
+      payment.payment_method = req.body.payment_method;
 
-    todo
-      .save()
-      .then((todo) => {
-        res.json("Todo updated");
-      })
-      .catch((err) => {
-        res.status(400).send("Update not possible");
-      });
+      payment
+        .save()
+        .then(() => {
+          res.json("Payment updated");
+        })
+        .catch(() => {
+          res.status(400).send("Update not possible");
+        });
+    }
   });
 };

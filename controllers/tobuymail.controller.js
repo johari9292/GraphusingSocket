@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport({
     pass: "xqksrhtfzdcraxwz",
   },
 });
-exports.buyemail = (req, res) => {
+exports.buyEmail = (req, res) => {
   var mailOptions = {
     from: "gaveagro2022@gmail.com",
     to: "hola@gaveagro.com",
@@ -41,7 +41,7 @@ Total Plants:    ${req.body.noofplant}`,
   }
 };
 
-exports.sellmail = (req, res) => {
+exports.sellEmail = (req, res) => {
   var mailOptions = {
     from: "gaveagro2022@gmail.com",
     to: "hola@gaveagro.com",

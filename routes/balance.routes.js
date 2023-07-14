@@ -3,12 +3,12 @@ const balanceController = require("../controllers/balance.controller");
 
 const router = express.Router();
 
-router.route("/getbalance/:id").get(balanceController.getuserBalance);
+router.route("/getbalance/:id").get(balanceController.getUserBalance);
 
-router.route("/getbalanceforadmin/").get(balanceController.gettodobyid);
+router.route("/getbalanceforadmin/").get(balanceController.getBalanceById);
 
-router.route("/addbalance").post(balanceController.addtodo);
+router.route("/addbalance").post(balanceController.addBalance);
 
-router.route("/deletebalance/:id").delete(balanceController.deletetodo);
-router.route("/updatebalance/:id").post(balanceController.updatetodo);
+router.route("/deletebalance/:id").delete(balanceController.deleteBalance);
+router.route("/updatebalance/:id").post(balanceController.updateBalance);
 module.exports = router;

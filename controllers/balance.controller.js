@@ -1,22 +1,23 @@
-const Todo = require("../models/balance.model");
+const Balance = require("../models/balance.model");
 
-exports.gettodo = (req, res) => {
-  // Todo.findOne({})
-  Todo.findOne({ user: req.params.id }, function (err, todos) {
+exports.getBalance = (req, res) => {
+  Balance.findOne({ user: req.params.id }, function (err, balance) {
     if (err) {
       console.log(err);
     } else {
-      res.json(todos);
+      res.json(balance);
     }
   });
 };
-exports.getuserBalance = (req, res) => {
-  Todo.find({ user: req.params.id }, function (err, todos) {
-    res.json(todos);
+
+exports.getUserBalance = (req, res) => {
+  Balance.find({ user: req.params.id }, function (err, balances) {
+    res.json(balances);
   });
 };
-exports.deletetodo = (req, res) => {
-  Todo.remove({ _id: req.params.id }, function (err) {
+
+exports.deleteBalance = (req, res) => {
+  Balance.remove({ _id: req.params.id }, function (err) {
     if (!err) {
       res.status(200).send({ status: "deleted" });
     } else {
@@ -25,57 +26,45 @@ exports.deletetodo = (req, res) => {
   });
 };
 
-exports.gettodobyid = (req, res) => {
-  Todo.find(function (err, todos) {
+exports.getBalanceById = (req, res) => {
+  Balance.find(function (err, balances) {
     if (err) {
       console.log(err);
     } else {
-      res.json(todos);
+      res.json(balances);
     }
   }).sort({ created: -1 });
 };
 
-exports.addtodo = (req, res) => {
-  let todo = new Todo(req.body);
-  todo
+exports.addBalance = (req, res) => {
+  let balance = new Balance(req.body);
+  balance
     .save()
-    .then((todo) => {
-      res.status(200).json({ todo: "todo added successfully" });
+    .then(() => {
+      res.status(200).json({ message: "Balance added successfully" });
     })
     .catch((err) => {
-      res.status(400).send("adding new todo failed", err);
+      res.status(400).send("Adding new balance failed", err);
     });
 };
 
-exports.addtodo = async (req, res) => {
-  const todo = new Todo(req.body);
-  try {
-    await todo.save();
-    return res.status(200).json({
-      message: "Successfully signed up!",
-    });
-  } catch (err) {
-    return res.status(400).json({
-      error: errorHandler.getErrorMessage(err),
-    });
-  }
-};
+exports.updateBalance = (req, res) => {
+  Balance.findById(req.params.id, function (err, balance) {
+    if (!balance) res.status(404).send("Data is not found");
+    else {
+      balance.balance_description = req.body.balance_description;
+      balance.balance_responsible = req.body.balance_responsible;
+      balance.balance_priority = req.body.balance_priority;
+      balance.balance_completed = req.body.balance_completed;
 
-exports.updatetodo = (req, res) => {
-  Todo.findById(req.params.id, function (err, todo) {
-    if (!todo) res.status(404).send("data is not found");
-    else todo.todo_description = req.body.todo_description;
-    todo.todo_responsible = req.body.todo_responsible;
-    todo.todo_priority = req.body.todo_priority;
-    todo.todo_completed = req.body.todo_completed;
-
-    todo
-      .save()
-      .then((todo) => {
-        res.json("Todo updated");
-      })
-      .catch((err) => {
-        res.status(400).send("Update not possible");
-      });
+      balance
+        .save()
+        .then(() => {
+          res.json("Balance updated");
+        })
+        .catch((err) => {
+          res.status(400).send("Update not possible");
+        });
+    }
   });
 };

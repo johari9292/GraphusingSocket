@@ -1,50 +1,19 @@
-const Todo = require("../models/tobuy.modal");
-var nodemailer = require("nodemailer");
-var transporter = nodemailer.createTransport({
-  service: "gmail",
-  user: "johari9292@gmail.com",
-  pass: "xqksrhtfzdcraxwz",
-});
-// exports.sendmail = async (req, res) => {
-//   let email = req.body.email;
-//   const user = new User(req.body);
-//   var mailOptions = {
-//     from: "gaveagro2022@gmail.com",
-//     to: "joharibalti1996@gmail.com",
-//     subject: "Sending Email using Node.js",
-//     text: "That was easy!" ,
-//   };
+const BuyPlant = require("../models/tobuy.modal");
 
-//   try {
-//     transporter.sendMail(mailOptions, function (error, info) {
-//       if (error) {
-//         console.log(error);
-//       } else {
-//         console.log("Email sent: " + info.response);
-//       }
-//     });
-//     return res.status(200).json({
-//       message: " Email send Sucessfully!",
-//     });
-//   } catch (err) {
-//     return res.status(400).json({
-//       error: errorHandler.getErrorMessage(err),
-//     });
-//   }
-// };
-
-exports.gettodo = (req, res) => {
-  Todo.find(function (err, todos) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(todos);
-    }
-  }).sort({ created: -1 });
+exports.getBuyPlants = (req, res) => {
+  BuyPlant.find()
+    .sort({ created: -1 })
+    .exec((err, buyPlants) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(buyPlants);
+      }
+    });
 };
 
-exports.deletetodo = (req, res) => {
-  Todo.remove({ _id: req.params.id }, function (err) {
+exports.deleteBuyPlant = (req, res) => {
+  BuyPlant.remove({ _id: req.params.id }, (err) => {
     if (!err) {
       res.status(200).send({ status: "deleted" });
     } else {
@@ -53,40 +22,46 @@ exports.deletetodo = (req, res) => {
   });
 };
 
-exports.gettodobyid = (req, res) => {
-  let id = req.params.id;
-  Todo.findById(id, function (err, todo) {
-    res.json(todo);
+exports.getBuyPlantById = (req, res) => {
+  const id = req.params.id;
+  BuyPlant.findById(id, (err, buyPlant) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(buyPlant);
+    }
   });
 };
 
-exports.addtodo = (req, res) => {
-  let todo = new Todo(req.body);
-  todo
+exports.addBuyPlant = (req, res) => {
+  const buyPlant = new BuyPlant(req.body);
+  buyPlant
     .save()
-    .then((todo) => {
-      res.status(200).json({ todo: "todo added successfully" });
+    .then(() => {
+      res.status(200).json({ message: "Buy plant added successfully" });
     })
     .catch((err) => {
-      res.status(400).send("adding new todo failed");
+      res.status(400).send("Adding new buy plant failed");
     });
 };
 
-exports.updatetodo = (req, res) => {
-  Todo.findById(req.params.id, function (err, todo) {
-    if (!todo) res.status(404).send("data is not found");
-    else todo.todo_description = req.body.todo_description;
-    todo.todo_responsible = req.body.todo_responsible;
-    todo.todo_priority = req.body.todo_priority;
-    todo.todo_completed = req.body.todo_completed;
+exports.updateBuyPlant = (req, res) => {
+  BuyPlant.findById(req.params.id, (err, buyPlant) => {
+    if (!buyPlant) {
+      res.status(404).send("Data is not found");
+    } else {
+      buyPlant.plant_description = req.body.plant_description;
+      buyPlant.plant_quantity = req.body.plant_quantity;
+      buyPlant.plant_price = req.body.plant_price;
 
-    todo
-      .save()
-      .then((todo) => {
-        res.json("Todo updated");
-      })
-      .catch((err) => {
-        res.status(400).send("Update not possible");
-      });
+      buyPlant
+        .save()
+        .then(() => {
+          res.json("Buy plant updated");
+        })
+        .catch(() => {
+          res.status(400).send("Update not possible");
+        });
+    }
   });
 };

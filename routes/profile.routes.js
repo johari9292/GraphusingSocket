@@ -1,14 +1,14 @@
 const express = require("express");
-const buyPlantController = require("../controllers/profile.controller");
+const ProfileController = require("../controllers/profile.controller");
 
 const router = express.Router();
 
-router.route("/getuserupdate").get(buyPlantController.gettodo);
+router.route("/getuserupdate").get(ProfileController.getProfiles);
 
-router.route("/getuserupdate/:id").get(buyPlantController.gettodobyid);
+router.route("/getuserupdate/:id").get(ProfileController.getProfileById);
 
-router.route("/addbuyplant").post(buyPlantController.addtodo);
+router.route("/addbuyplant").post(ProfileController.addProfile);
 
-router.route("/deletebuyplant/:id").delete(buyPlantController.deletetodo);
-router.route("/updateuser/:id").post(buyPlantController.updatetodo);
+router.route("/deletebuyplant/:id").delete(ProfileController.deleteProfile);
+router.route("/updateuser/:id").post(ProfileController.updateProfile);
 module.exports = router;

@@ -3,12 +3,12 @@ const Payment = require("../controllers/payment.controller");
 
 const router = express.Router();
 
-router.route("/getadminpayment").get(Payment.gettodo);
+router.route("/getadminpayment").get(Payment.getPayments);
 
-router.route("/getpayment/:id").get(Payment.gettodobyid);
+router.route("/getpayment/:id").get(Payment.getPaymentsByUser);
 
-router.route("/addpayment/").post(Payment.addtodo);
+router.route("/addpayment/").post(Payment.addPayment);
 
-router.route("/deletepayment/:id").delete(Payment.deletetodo);
-router.route("/updatepayment/:id").post(Payment.updatetodo);
+router.route("/deletepayment/:id").delete(Payment.deletePayment);
+router.route("/updatepayment/:id").post(Payment.updatePayment);
 module.exports = router;
