@@ -9,6 +9,20 @@ const getAmount = (req, res) => {
       return res.status(500).json({ error: "Internal server error" });
     }
     if (!amount) {
+      const newAmount = new Amount({
+        amount: 180, // Set the value for the amount attribute
+      });
+
+      // Save the new Amount to the database
+      newAmount.save((err, savedAmount) => {
+        if (err) {
+          console.error(err);
+          // Handle the error appropriately
+        } else {
+          console.log("Amount added:", savedAmount);
+          // Perform any desired operations with the savedAmount object
+        }
+      });
       return res.status(404).json({ error: "Amount not found" });
     }
     res.json(amount);
